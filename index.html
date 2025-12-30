@@ -111,6 +111,15 @@
                 padding: 6px 3px;
             }
         }
+        
+        .timer-expired {
+            background: rgba(242, 13, 13, 0.2);
+            border: 2px solid rgba(242, 13, 13, 0.5);
+        }
+        
+        .timer-expired-digit {
+            animation: pulse-timer 0.5s ease-in-out infinite;
+        }
     </style>
 </head>
 
@@ -615,6 +624,14 @@
                                 <span class="text-gray-400 text-xs mt-1">Segundos</span>
                             </div>
                         </div>
+                        <div id="timer-expired-message" class="hidden mt-4">
+                            <div class="timer-expired rounded-lg p-4">
+                                <p class="text-red-400 font-bold text-center">
+                                    <span class="material-symbols-outlined align-middle mr-2">timer_off</span>
+                                    OFERTA ENCERRADA! O preço voltou para R$ 997,00
+                                </p>
+                            </div>
+                        </div>
                     </div>
                     
                     <!-- Botão de Compra Corrigido -->
@@ -752,25 +769,42 @@
                 floatImage.style.animation = 'float 6s ease-in-out infinite';
             }
             
-            // Inicializa o timer
-            initializeTimer();
+            // Inicializa o timer FUNCIONAL
+            initializeFunctionalTimer();
         });
 
-        // Timer Functionality
-        function initializeTimer() {
-            // Define o tempo final (24 horas a partir de agora)
-            const now = new Date();
-            const endTime = new Date(now.getTime() + 24 * 60 * 60 * 1000); // 24 horas
+        // TIMER FUNCIONAL - Persistente entre sessões
+        function initializeFunctionalTimer() {
+            const STORAGE_KEY = 'ai_girlfriend_timer_end';
+            const TIMER_DURATION = 24 * 60 * 60 * 1000; // 24 horas em milissegundos
+            
+            // Tenta recuperar o tempo final do localStorage
+            let endTime = localStorage.getItem(STORAGE_KEY);
+            
+            // Se não existir no localStorage, cria um novo tempo final
+            if (!endTime) {
+                const now = new Date();
+                endTime = now.getTime() + TIMER_DURATION;
+                localStorage.setItem(STORAGE_KEY, endTime);
+            } else {
+                endTime = parseInt(endTime);
+                
+                // Verifica se o timer já expirou
+                const now = new Date().getTime();
+                if (now > endTime) {
+                    // Timer expirado - cria novo tempo final
+                    endTime = now + TIMER_DURATION;
+                    localStorage.setItem(STORAGE_KEY, endTime);
+                }
+            }
             
             function updateTimer() {
-                const currentTime = new Date();
+                const currentTime = new Date().getTime();
                 const timeDifference = endTime - currentTime;
                 
-                // Se o tempo acabou, reseta para 24 horas
+                // Se o tempo acabou
                 if (timeDifference <= 0) {
-                    // Reseta para mais 24 horas
-                    endTime.setTime(endTime.getTime() + 24 * 60 * 60 * 1000);
-                    updateTimer();
+                    showTimerExpired();
                     return;
                 }
                 
@@ -795,12 +829,50 @@
                 if (secondsElement) secondsElement.textContent = formattedSeconds;
                 if (footerTimerElement) footerTimerElement.textContent = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
                 
-                // Efeito visual nos últimos 10 segundos
-                if (hours === 0 && minutes === 0 && seconds <= 10) {
-                    secondsElement.classList.add('animate-pulse', 'text-red-500');
-                } else {
-                    secondsElement.classList.remove('animate-pulse', 'text-red-500');
+                // Efeito visual nos últimos 10 minutos
+                if (hours === 0 && minutes <= 10) {
+                    const digits = document.querySelectorAll('.timer-digit');
+                    digits.forEach(digit => {
+                        digit.classList.add('timer-expired');
+                    });
+                    
+                    if (minutes === 0 && seconds <= 30) {
+                        secondsElement.classList.add('timer-expired-digit');
+                    }
                 }
+            }
+            
+            function showTimerExpired() {
+                // Esconde o timer
+                const timerContainer = document.querySelector('.flex.justify-center.items-center.gap-2');
+                if (timerContainer) timerContainer.style.display = 'none';
+                
+                // Mostra mensagem de oferta encerrada
+                const expiredMessage = document.getElementById('timer-expired-message');
+                if (expiredMessage) expiredMessage.classList.remove('hidden');
+                
+                // Atualiza o preço na oferta
+                const priceElement = document.querySelector('.text-6xl.sm\\:text-7xl.font-black');
+                if (priceElement) {
+                    priceElement.innerHTML = '<span class="text-2xl align-top text-gray-400 font-bold mr-1">R$</span>997,00';
+                }
+                
+                // Atualiza o footer
+                const footerTimer = document.getElementById('footer-timer');
+                if (footerTimer) {
+                    footerTimer.textContent = 'ENCERRADA';
+                    footerTimer.classList.add('text-red-500');
+                }
+                
+                // Remove o timer do localStorage (opcional)
+                localStorage.removeItem(STORAGE_KEY);
+            }
+            
+            // Verifica se já está expirado ao carregar
+            const currentTime = new Date().getTime();
+            if (currentTime > endTime) {
+                showTimerExpired();
+                return;
             }
             
             // Atualiza o timer imediatamente e a cada segundo
