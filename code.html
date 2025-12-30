@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html class="dark" lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>AI Girlfriend Brasil - O Método Proibido</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+    
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    
+    <!-- Font Awesome for social proof icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
+    <!-- Theme Configuration -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f20d0d",
+                        "secondary": "#10b981",
+                        "background-light": "#f8f5f5",
+                        "background-dark": "#0d0505",
+                        "surface-dark": "#1a0b0b",
+                        "accent-purple": "#2d0b2e",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                    boxShadow: {
+                        'neon': '0 0 10px rgba(242, 13, 13, 0.5), 0 0 20px rgba(242, 13, 13, 0.3)',
+                        'neon-green': '0 0 10px rgba(16, 185, 129, 0.5), 0 0 20px rgba(16, 185, 129, 0.3)',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+                        'slide-in': 'slide-in 0.5s ease-out',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        'pulse-glow': {
+                            '0%, 100%': { opacity: 1, boxShadow: '0 0 10px rgba(242, 13, 13, 0.5)' },
+                            '50%': { opacity: 0.8, boxShadow: '0 0 20px rgba(242, 13, 13, 0.8)' },
+                        },
+                        'slide-in': {
+                            '0%': { transform: 'translateY(20px)', opacity: 0 },
+                            '100%': { transform: 'translateY(0)', opacity: 1 },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+    
+    <style>
+        @media (max-width: 768px) {
+            .hero-bg {
+                background-image: linear-gradient(to bottom, rgba(13, 5, 5, 0.85), rgba(45, 11, 46, 0.9)), 
+                                  url('https://lh3.googleusercontent.com/aida-public/AB6AXuD7RSXKK72fGL8Qiw2c7jHsCz5dH2cRqRx0-4gIideVPr1cRX_cLLDjpuK_n7tqFuzQjuKPje9WgP8LMw_iFCLQsnOnuSyL1N4VQi3bY1wmElNy4HzJnQYtfrVXmAGdZrSoddLZG1qG6VFuTvElfoAu4Q6qFV60SYo-Jsbpm4Ww30SxN849IYFltXXpty5ekohli9FBu732w5hhYIgRv87s8tjysvLG3aNzo4XkwZTLxL6D40yC6v6b2GocXidGHh1iP8hUtYIkLGk');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                min-height: 70vh;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-white overflow-x-hidden antialiased selection:bg-primary selection:text-white">
+    <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root">
+        
+        <!-- Header -->
+        <div class="sticky top-0 z-50 w-full border-b border-white/10 bg-background-dark/90 backdrop-blur-md">
+            <div class="layout-container flex h-full grow flex-col max-w-[1200px] mx-auto">
+                <header class="flex items-center justify-between whitespace-nowrap px-4 py-3 sm:px-10">
+                    <div class="flex items-center gap-2 text-white">
+                        <span class="material-symbols-outlined text-primary text-3xl">smart_toy</span>
+                        <h2 class="text-white text-lg font-bold tracking-tighter uppercase">AI Girlfriend <span class="text-primary">Brasil</span></h2>
+                    </div>
+                    <div class="flex items-center gap-4 sm:gap-8">
+                        <div class="hidden sm:flex items-center gap-6">
+                            <a class="text-gray-300 hover:text-white text-sm font-medium transition-colors" href="#modulos">Módulos</a>
+                            <a class="text-gray-300 hover:text-white text-sm font-medium transition-colors" href="#provas">Provas</a>
+                            <a class="text-gray-300 hover:text-white text-sm font-medium transition-colors" href="#bonus">Bônus</a>
+                        </div>
+                        <a class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-primary hover:bg-red-600 transition-all duration-300 shadow-neon text-white text-xs sm:text-sm font-bold tracking-wide animate-pulse-glow" href="#oferta">
+                            <span class="truncate">GARANTIR VAGA</span>
+                        </a>
+                    </div>
+                </header>
+            </div>
+        </div>
+
+        <!-- Hero Section -->
+        <div class="relative w-full hero-bg md:bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] md:from-accent-purple/20 md:via-background-dark md:to-background-dark">
+            <div class="layout-container max-w-[1200px] mx-auto px-4 sm:px-10 py-8 md:py-20">
+                <div class="@container">
+                    <div class="flex flex-col gap-8 md:gap-10 lg:flex-row lg:items-center">
+                        
+                        <!-- Left Content -->
+                        <div class="flex flex-col gap-6 lg:w-1/2 pt-4 md:pt-0">
+                            <div class="flex flex-col gap-4 text-left">
+                                <div class="inline-flex w-fit items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary">
+                                    <span class="relative flex h-2 w-2">
+                                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                                        <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                                    </span>
+                                    Método Novo 2025
+                                </div>
+                                
+                                <h1 class="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1] tracking-tight" data-aos="fade-up">
+                                    Como Brasileiros Estão Faturando em <span class="text-green-500">DÓLAR</span> Criando Modelos com IA 
+                                    <span class="text-primary text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold block mt-2">(100% Legal • Sem Rosto • Sem Exposição)</span>
+                                </h1>
+                                
+                                <h2 class="text-gray-400 text-base sm:text-lg font-normal leading-relaxed max-w-xl" data-aos="fade-up" data-aos-delay="100">
+                                    O mercado EUA é o maior consumidor do mundo desse tipo de conteúdo. Descubra o método completo que já está mudando a vida de alunos comuns.
+                                </h2>
+                            </div>
+                            
+                            <!-- Social Proof Stats -->
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 my-4" data-aos="fade-up" data-aos-delay="200">
+                                <div class="bg-surface-dark/50 border border-white/5 rounded-lg p-3 text-center">
+                                    <div class="text-green-400 text-xl font-bold">487+</div>
+                                    <div class="text-gray-400 text-xs">Alunos Ativos</div>
+                                </div>
+                                <div class="bg-surface-dark/50 border border-white/5 rounded-lg p-3 text-center">
+                                    <div class="text-green-400 text-xl font-bold">$200k+</div>
+                                    <div class="text-gray-400 text-xs">Faturado</div>
+                                </div>
+                                <div class="bg-surface-dark/50 border border-white/5 rounded-lg p-3 text-center">
+                                    <div class="text-green-400 text-xl font-bold">100%</div>
+                                    <div class="text-gray-400 text-xs">Anônimo</div>
+                                </div>
+                                <div class="bg-surface-dark/50 border border-white/5 rounded-lg p-3 text-center">
+                                    <div class="text-green-400 text-xl font-bold">24/7</div>
+                                    <div class="text-gray-400 text-xs">Suporte</div>
+                                </div>
+                            </div>
+                            
+                            <a class="group flex w-full cursor-pointer flex-col items-center justify-center overflow-hidden rounded-xl bg-primary hover:bg-red-600 transition-all duration-300 px-6 py-4 shadow-[0_0_40px_-10px_rgba(242,13,13,0.5)] animate-slide-in" href="#oferta" data-aos="fade-up" data-aos-delay="300">
+                                <span class="text-white text-lg sm:text-xl font-bold uppercase tracking-wider group-hover:scale-105 transition-transform">QUERO ACESSO AGORA</span>
+                                <span class="text-white/90 text-xs sm:text-sm font-medium">POR APENAS 12x R$ 20,10</span>
+                            </a>
+                            
+                            <div class="flex flex-wrap items-center gap-4 text-xs text-gray-500 mt-4">
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-green-500 text-sm">verified</span>
+                                    <span>Compra Segura</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-green-500 text-sm">lock</span>
+                                    <span>Acesso Imediato</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-green-500 text-sm">rotate_left</span>
+                                    <span>Garantia de 7 Dias</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Right Image (Desktop only) -->
+                        <div class="lg:w-1/2 hidden lg:flex justify-center">
+                            <div class="relative w-full max-w-md aspect-[3/4] rounded-2xl overflow-hidden border border-white/10 shadow-2xl rotate-1 hover:rotate-0 transition-transform duration-500 animate-float">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10 opacity-80"></div>
+                                <div class="w-full h-full bg-cover bg-center" data-alt="Model with neon lighting in a dark cyberpunk setting, mysterious and alluring" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD7RSXKK72fGL8Qiw2c7jHsCz5dH2cRqRx0-4gIideVPr1cRX_cLLDjpuK_n7tqFuzQjuKPje9WgP8LMw_iFCLQsnOnuSyL1N4VQi3bY1wmElNy4HzJnQYtfrVXmAGdZrSoddLZG1qG6VFuTvElfoAu4Q6qFV60SYo-Jsbpm4Ww30SxN849IYFltXXpty5ekohli9FBu732w5hhYIgRv87s8tjysvLG3aNzo4XkwZTLxL6D40yC6v6b2GocXidGHh1iP8hUtYIkLGk");'></div>
+                                <div class="absolute bottom-6 left-6 z-20">
+                                    <div class="bg-black/60 backdrop-blur-sm p-3 rounded-lg border border-white/10">
+                                        <p class="text-white text-sm font-bold">Faturamento Estimado</p>
+                                        <p class="text-green-400 text-xl font-mono font-bold">$4,250.00 / mês</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Urgency/Proof Section -->
+        <div class="w-full bg-surface-dark border-y border-white/5 py-8 md:py-10">
+            <div class="layout-container max-w-[960px] mx-auto px-4">
+                <h2 class="text-gray-200 tracking-tight text-lg sm:text-xl md:text-2xl font-bold leading-tight text-center" data-aos="fade-up">
+                    "Enquanto você pensa, outros brasileiros estão <span class="text-green-400 underline decoration-green-400/30 underline-offset-4">sacando em dólar todo mês</span> com modelos perfeitas geradas por IA. Não fique pra trás em 2026."
+                </h2>
+                <div class="flex justify-center mt-4">
+                    <div class="flex items-center gap-2 text-sm text-gray-400">
+                        <span class="material-symbols-outlined text-yellow-500">schedule</span>
+                        <span>Preço de lançamento válido por <span class="text-primary font-bold">24 horas</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Social Proof Section -->
+        <div class="w-full py-12 md:py-16 bg-background-dark" id="provas">
+            <div class="layout-container max-w-[1200px] mx-auto px-4 sm:px-10">
+                <div class="text-center mb-8 md:mb-12">
+                    <h2 class="text-white text-2xl md:text-3xl font-black tracking-tight mb-2">Históricos Reais de Alunos</h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto">Veja resultados reais de brasileiros comuns que aplicaram o método</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8" data-aos="fade-up">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-surface-dark border border-white/5 rounded-xl p-5 md:p-6">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
+                                <span class="text-primary font-bold">R</span>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold">Ricardo S.</h4>
+                                <div class="flex text-yellow-400 text-sm">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm italic mb-4">"Em 2 meses já tirei $1,850. Nunca imaginei que daria certo, mas o método é passo a passo."</p>
+                        <div class="bg-green-900/20 border border-green-800/30 rounded-lg p-3">
+                            <div class="text-green-400 font-bold text-lg">$1,850 / mês</div>
+                            <div class="text-green-300 text-xs">Faturamento mensal</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="bg-surface-dark border border-white/5 rounded-xl p-5 md:p-6">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
+                                <span class="text-primary font-bold">A</span>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold">Ana L.</h4>
+                                <div class="flex text-yellow-400 text-sm">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm italic mb-4">"Consegui substituir meu salário de CLT trabalhando apenas 2h por dia. Liberdade financeira real."</p>
+                        <div class="bg-green-900/20 border border-green-800/30 rounded-lg p-3">
+                            <div class="text-green-400 font-bold text-lg">$3,200 / mês</div>
+                            <div class="text-green-300 text-xs">Faturamento mensal</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 3 -->
+                    <div class="bg-surface-dark border border-white/5 rounded-xl p-5 md:p-6">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
+                                <span class="text-primary font-bold">M</span>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold">Marcelo T.</h4>
+                                <div class="flex text-yellow-400 text-sm">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm italic mb-4">"O módulo secreto vale o curso inteiro. Conteúdo NSFW realmente funciona e paga muito mais."</p>
+                        <div class="bg-green-900/20 border border-green-800/30 rounded-lg p-3">
+                            <div class="text-green-400 font-bold text-lg">$5,700 / mês</div>
+                            <div class="text-green-300 text-xs">Faturamento mensal</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Payment Proof -->
+                <div class="mt-12 bg-gradient-to-r from-primary/10 to-purple-900/10 border border-white/5 rounded-xl p-6" data-aos="fade-up">
+                    <div class="flex flex-col md:flex-row items-center gap-6">
+                        <div class="md:w-1/3">
+                            <h3 class="text-white text-xl font-bold mb-2">Comprovantes Reais</h3>
+                            <p class="text-gray-300 text-sm">Veja prints de saques reais de alunos</p>
+                        </div>
+                        <div class="md:w-2/3 grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div class="bg-black/50 border border-white/5 rounded-lg p-3 aspect-video flex items-center justify-center">
+                                <div class="text-center">
+                                    <span class="material-symbols-outlined text-green-500 text-3xl">savings</span>
+                                    <div class="text-green-400 font-bold mt-2">$1,234</div>
+                                </div>
+                            </div>
+                            <div class="bg-black/50 border border-white/5 rounded-lg p-3 aspect-video flex items-center justify-center">
+                                <div class="text-center">
+                                    <span class="material-symbols-outlined text-green-500 text-3xl">account_balance</span>
+                                    <div class="text-green-400 font-bold mt-2">$2,567</div>
+                                </div>
+                            </div>
+                            <div class="bg-black/50 border border-white/5 rounded-lg p-3 aspect-video flex items-center justify-center">
+                                <div class="text-center">
+                                    <span class="material-symbols-outlined text-green-500 text-3xl">payments</span>
+                                    <div class="text-green-400 font-bold mt-2">$3,890</div>
+                                </div>
+                            </div>
+                            <div class="bg-black/50 border border-white/5 rounded-lg p-3 aspect-video flex items-center justify-center">
+                                <div class="text-center">
+                                    <span class="material-symbols-outlined text-green-500 text-3xl">trending_up</span>
+                                    <div class="text-green-400 font-bold mt-2">$4,567</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="w-full py-12 md:py-16 bg-background-dark relative overflow-hidden">
+            <!-- Background Decoration -->
+            <div class="absolute top-0 right-0 w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-primary/5 rounded-full blur-[80px] md:blur-[120px] pointer-events-none"></div>
+            <div class="layout-container max-w-[1200px] mx-auto px-4 sm:px-10">
+                <div class="flex flex-col gap-8 md:gap-12">
+                    <div class="flex flex-col gap-4 max-w-2xl" data-aos="fade-up">
+                        <h2 class="text-white text-2xl md:text-3xl font-black tracking-tight">
+                            Por Que Isso Funciona <span class="text-primary">Hoje</span>
+                        </h2>
+                        <p class="text-gray-400">O timing perfeito para entrar no mercado adulto sem se expor. Uma janela de oportunidade única.</p>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <!-- Card 1 -->
+                        <div class="flex flex-col gap-4 rounded-xl border border-white/5 bg-surface-dark hover:bg-white/5 transition-all duration-300 p-5 md:p-6" data-aos="fade-up" data-aos-delay="100">
+                            <div class="w-12 h-12 rounded-lg bg-green-900/20 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-green-500 text-3xl">attach_money</span>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <h3 class="text-white text-lg font-bold">Mercado Bilionário</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed">EUA gasta bilhões em conteúdo adulto por assinatura todo ano. A demanda é infinita.</p>
+                            </div>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="flex flex-col gap-4 rounded-xl border border-white/5 bg-surface-dark hover:bg-white/5 transition-all duration-300 p-5 md:p-6" data-aos="fade-up" data-aos-delay="150">
+                            <div class="w-12 h-12 rounded-lg bg-blue-900/20 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-blue-500 text-3xl">trending_up</span>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <h3 class="text-white text-lg font-bold">Lucro em Dólar x5</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed">Receba em moeda forte. O Real desvalorizado significa que seu lucro é multiplicado por 5 ou 6x.</p>
+                            </div>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="flex flex-col gap-4 rounded-xl border border-white/5 bg-surface-dark hover:bg-white/5 transition-all duration-300 p-5 md:p-6" data-aos="fade-up" data-aos-delay="200">
+                            <div class="w-12 h-12 rounded-lg bg-purple-900/20 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-purple-500 text-3xl">gavel</span>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <h3 class="text-white text-lg font-bold">100% Legal</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed">Conteúdo sintético, sem envolver pessoas reais. Totalmente dentro da lei e das regras das plataformas.</p>
+                            </div>
+                        </div>
+                        <!-- Card 4 -->
+                        <div class="flex flex-col gap-4 rounded-xl border border-white/5 bg-surface-dark hover:bg-white/5 transition-all duration-300 p-5 md:p-6" data-aos="fade-up" data-aos-delay="250">
+                            <div class="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary text-3xl">visibility_off</span>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <h3 class="text-white text-lg font-bold">Renda Sem Rosto</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed">Sem aparecer, sem voz, apenas gerenciando seus ativos digitais. Ninguém precisa saber quem você é.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modules Section -->
+        <div class="w-full py-12 md:py-16 bg-surface-dark border-t border-white/5" id="modulos">
+            <div class="layout-container max-w-[800px] mx-auto px-4 sm:px-10">
+                <div class="text-center mb-8 md:mb-12" data-aos="fade-up">
+                    <h2 class="text-white text-2xl md:text-3xl font-black tracking-tight mb-2">O Que Você Vai Aprender</h2>
+                    <p class="text-gray-400">Um passo a passo validado, do zero ao primeiro saque.</p>
+                </div>
+                <div class="flex flex-col gap-3 md:gap-4">
+                    <!-- Module 1 -->
+                    <div class="group flex items-start gap-4 p-4 md:p-5 rounded-lg bg-background-dark border border-white/5 hover:border-white/20 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                        <span class="text-2xl font-black text-white/20 group-hover:text-primary transition-colors">01</span>
+                        <div>
+                            <h3 class="text-white text-base md:text-lg font-bold mb-1">O Ouro das AI Girlfriends em 2025</h3>
+                            <p class="text-gray-400 text-xs md:text-sm">Entenda a psicologia por trás do mercado e onde está o dinheiro grosso.</p>
+                        </div>
+                    </div>
+                    <!-- Module 2 -->
+                    <div class="group flex items-start gap-4 p-4 md:p-5 rounded-lg bg-background-dark border border-white/5 hover:border-white/20 transition-all duration-300" data-aos="fade-up" data-aos-delay="150">
+                        <span class="text-2xl font-black text-white/20 group-hover:text-primary transition-colors">02</span>
+                        <div>
+                            <h3 class="text-white text-base md:text-lg font-bold mb-1">Criando Sua Musa Perfeita</h3>
+                            <p class="text-gray-400 text-xs md:text-sm">Prompts realistas inclusos. Aprenda a gerar consistência de rosto e corpo.</p>
+                        </div>
+                    </div>
+                    <!-- Module 3 -->
+                    <div class="group flex items-start gap-4 p-4 md:p-5 rounded-lg bg-background-dark border border-white/5 hover:border-white/20 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                        <span class="text-2xl font-black text-white/20 group-hover:text-primary transition-colors">03</span>
+                        <div>
+                            <h3 class="text-white text-base md:text-lg font-bold mb-1">Branding Explosivo no Instagram/TikTok</h3>
+                            <p class="text-gray-400 text-xs md:text-sm">Como viralizar seu modelo sem gastar um centavo com anúncios.</p>
+                        </div>
+                    </div>
+                    <!-- Module 4 -->
+                    <div class="group flex items-start gap-4 p-4 md:p-5 rounded-lg bg-background-dark border border-white/5 hover:border-white/20 transition-all duration-300" data-aos="fade-up" data-aos-delay="250">
+                        <span class="text-2xl font-black text-white/20 group-hover:text-primary transition-colors">04</span>
+                        <div>
+                            <h3 class="text-white text-base md:text-lg font-bold mb-1">Plataformas Gringas que Pagam em Dólar</h3>
+                            <p class="text-gray-400 text-xs md:text-sm">Setup de contas, verificação e métodos de recebimento no Brasil.</p>
+                        </div>
+                    </div>
+                    <!-- Module 5 -->
+                    <div class="group flex items-start gap-4 p-4 md:p-5 rounded-lg bg-background-dark border border-white/5 hover:border-white/20 transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                        <span class="text-2xl font-black text-white/20 group-hover:text-primary transition-colors">05</span>
+                        <div>
+                            <h3 class="text-white text-base md:text-lg font-bold mb-1">A Experiência de Namorada Virtual 24h</h3>
+                            <p class="text-gray-400 text-xs md:text-sm">Chat IA automatizado para reter assinantes e vender conteúdo extra.</p>
+                        </div>
+                    </div>
+                    <!-- SECRET MODULE -->
+                    <div class="relative overflow-hidden group flex items-start gap-4 p-5 md:p-6 rounded-xl bg-gradient-to-r from-red-950/40 to-background-dark border border-primary shadow-[0_0_15px_rgba(242,13,13,0.15)] animate-pulse hover:animate-none mt-4" data-aos="fade-up" data-aos-delay="350">
+                        <div class="absolute -right-6 -top-6 bg-primary text-white text-[10px] font-bold px-8 py-1 rotate-45 shadow-sm">SECRETO</div>
+                        <span class="material-symbols-outlined text-primary text-3xl shrink-0">lock_open</span>
+                        <div>
+                            <h3 class="text-primary text-lg md:text-xl font-black mb-2 uppercase">Módulo Secreto: Conteúdo Proibido</h3>
+                            <h4 class="text-white font-bold mb-2 text-sm md:text-base">"Como Gerar Poses Explícitas com IA Open Source – O Conteúdo que Mais Vende"</h4>
+                            <p class="text-gray-300 text-xs md:text-sm">Detalhes sobre ferramentas open source sem censura, prompts avançados NSFW, como evitar bans e maximizar lucro com PPV (Pay Per View) explícito.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bonus Section -->
+        <div class="w-full py-12 md:py-16 bg-background-dark relative" id="bonus">
+            <div class="layout-container max-w-[1000px] mx-auto px-4 sm:px-10">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
+                    <div data-aos="fade-right">
+                        <h2 class="text-white text-2xl md:text-3xl font-black tracking-tight mb-4 md:mb-6">Bônus Exclusivos Para Quem Entrar Hoje</h2>
+                        <ul class="flex flex-col gap-3 md:gap-4">
+                            <li class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-green-500">check_circle</span>
+                                <span class="text-gray-300 font-medium text-sm md:text-base">Pack com +50 Prompts (Realistas + Explícitos)</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-green-500">check_circle</span>
+                                <span class="text-gray-300 font-medium text-sm md:text-base">Templates prontos de Bio, Legendas e Tiers de Preço</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-green-500">check_circle</span>
+                                <span class="text-gray-300 font-medium text-sm md:text-base">Grupo VIP Secreto no Telegram (Networking)</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-green-500">check_circle</span>
+                                <span class="text-gray-300 font-medium text-sm md:text-base">Atualizações Vitalícias do Curso</span>
+                            </
